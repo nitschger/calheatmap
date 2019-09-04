@@ -4,10 +4,6 @@
   <meta charset="utf-8">
   <title>SBB Zugverspätung Heatmap</title>
   <link rel="stylesheet" type="text/css" href="./src/calendar-heatmap.css">
-  <script
-  src="http://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -18,26 +14,29 @@
   <p>So hätte er noch Zeit, am Morgen mit seiner Familie zu frühstücken, oder am Abend noch einen Snack zu kaufen, bevor er zum Gleis geht. </p>
   <p>Ich möchte aufzeigen, wie viel Zeit Jakob damit verliert, am Perron auf den zu spät kommenden Zug zu warten. Es interessiert für diese Fragestellung also nur die Ankommenspünktlichkeit des Abfahrtbahnhofes.
     </p>
-  <button class="button" onclick="reloadData()">07:02 von Bern nach Zürich</button>
-  <button class="button" onclick="loadOtherData()">17:02 von Zürich nach Bern</button>
-  <button class="button">beide Verbindungen kombiniert</button>
+  <button class="button" onclick="loadData('BERN')">07:02 von Bern nach Zürich</button>
+  <button class="button" onclick="loadData('ZURICH')">17:02 von Zürich nach Bern</button>
+  <button class="button" onclick="loadData('COMBINED')">beide Verbindungen kombiniert</button>
   <div class="container"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js" charset="utf-8"></script>
   <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
   <script src="./src/calendar-heatmap.js"></script>
-  <script type="text/javascript">
-    function reloadData(){
-      var file = new File("first.json", null);
-    }
+  <script src="./data/bernData.js"></script>
+  <script src="./data/zurichData.js"></script>
+  <script src="./data/combinedData.js"></script>
 
-    function receivedText(e){
-      let lines = e.target.result;
-      let data = JSON.parse(lines);
-      var normalizedData = data.map((input) =>{
-      return { "date": input.BETRIEBSTAG, "count": input.verspaetung }
-      });
+  <script type="text/javascript">
+    function loadData(dataToLoad){
+      var data;
+      if(dataToLoad === "BERN"){
+        data = bernDataNormalized
+      }else if(dataToLoad === "ZURICH"){
+        data = zurichDataNormalized
+      }else if(dataToLoad === "COMBINED"){
+        data = combinedDataNormalized
+      }
       var heatmap = calendarHeatmap()
-      .data(normalizedData)
+      .data(data)
       .selector('.container')
       .tooltipEnabled(true)
       .colorRange(['#8594ae', '#eb0000'])
@@ -47,11 +46,6 @@
       heatmap();  // render the chart
     }
 
-    function loadOtherData(){
-      fr = new FileReader();
-      fr.onload = receivedText;
-      fr.readAsText("second.json");
-    }
     moment.defaultFormat = "DD.MM.YYYY HH:mm";
     moment.locale('de-CH');
     var now = moment().endOf('day').toDate();
@@ -62,18 +56,6 @@
         count: (dateElement.getDay() !== 0 && dateElement.getDay() !== 6) ? Math.floor(Math.random() * 60) : Math.floor(Math.random() * 10)
       };
     });
-
-
-    var realChartData = JSON.parse(`
-    `);
-
-    
-    
-    var normalizedData2 = realChartData2.map((input) =>{
-      return { "date": input.BETRIEBSTAG, "count": input.verspaetung }
-    });
-    
-    
   </script>
 </body>
 
