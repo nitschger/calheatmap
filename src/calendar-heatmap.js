@@ -256,6 +256,8 @@ function calendarHeatmap() {
       var count = countForDate(d);
       if(moment(d).day() == 6 || moment(d).day() == 0){
         return '<span><strong>Am Wochenende (' + dateStr + ') blieb Jakob zu Hause.</strong> ' + '</span>';
+      }else if(count === "0NA"){
+        return '<span><strong>Am ' + dateStr + ' fiel der Zug aus - mist.</strong> ' + '</span>';
       }else{
         return '<span><strong>' + (count ? count : locale.No) + ' ' + pluralizedTooltipUnit(count) + ' Verspätung ' + '</strong> ' + locale.on + ' ' + dateStr + '</span>';
       }
