@@ -1,4 +1,4 @@
-## This project is a frok from https://github.com/DKirwan/calendar-heatmap
+## This project is a fork from https://github.com/DKirwan/calendar-heatmap
 
 # D3 Calendar Heatmap
 A [d3.js](https://d3js.org/) heatmap representing time series data. Inspired by Github's contribution chart
