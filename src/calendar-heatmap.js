@@ -19,6 +19,7 @@ function calendarHeatmap() {
   var colorRange = ['#EB0000','#8594AE'];
   var tooltipEnabled = true;
   var tooltipUnit = 'Sekunde';
+  var tooltipUnitMin = 'Minute';
   var legendEnabled = true;
   var onClick = null;
   var weekStart = 0; //0 for Sunday, 1 for Monday
@@ -223,7 +224,7 @@ function calendarHeatmap() {
 
             return Math.floor(matchIndex / 7) * (SQUARE_LENGTH + SQUARE_PADDING) + 54;
           })
-          .attr('y', 10);  // fix these to the top
+          .attr('y', 12);  // fix these to the top
 
       locale.days.forEach(function (day, index) {
         index = formatWeekday(index);
@@ -236,9 +237,13 @@ function calendarHeatmap() {
       });
     }
 
-    function pluralizedTooltipUnit (count) {
-      if ('string' === typeof tooltipUnit) {
-        return (tooltipUnit + (count === 1 ? '' : 'n'));
+    function pluralizedTooltipUnit (count, isMin) {
+      if ('string' === typeof tooltipUnit || 'string' === typeof tooltipUnitMin) {
+        if(isMin === true){
+          return (tooltipUnitMin + (count === 1 ? '' : 'n'));
+        }else{
+          return (tooltipUnit + (count === 1 ? '' : 'n'));
+        }
       }
       for (var i in tooltipUnit) {
         var _rule = tooltipUnit[i];
@@ -259,8 +264,14 @@ function calendarHeatmap() {
       }else if(count === "0NA"){
         return '<span><strong>Am ' + dateStr + ' fiel der Zug aus - mist.</strong> ' + '</span>';
       }else{
-        return '<span><strong>' + (count ? count : locale.No) + ' ' + pluralizedTooltipUnit(count) + ' Verspätung ' + '</strong> ' + locale.on + ' ' + dateStr + '</span>';
+        return '<span><strong>' + (count ? calculateMinutes(count) : locale.No) + ' Verspätung ' + '</strong> ' + locale.on + ' ' + dateStr + '</span>';
       }
+    }
+
+    function calculateMinutes(count){
+      var seconds = count % 60;
+      var minutes = Math.floor(count / 60);
+      return (minutes ? minutes + " " + pluralizedTooltipUnit(minutes, true) : "") + " " + seconds + " " + pluralizedTooltipUnit(seconds)
     }
 
     function countForDate(d) {
