@@ -10,7 +10,7 @@
 }
 
 @font-face {
-  font-family: SBBWeb Thin;
+  font-family: SBBWebThin;
   src: url('fonts/SBBWeb-Thin.eot');
   src: url('fonts/SBBWeb-Thin.eot?') format('☺'),
        url('fonts/SBBWeb-Thin.woff') format('woff'),
@@ -20,7 +20,7 @@
 }
 
 @font-face {
-  font-family: SBBWeb Ultralight;
+  font-family: SBBWebUltralight;
   src: url('fonts/SBBWeb-Ultralight.eot');
   src: url('fonts/SBBWeb-Ultralight.eot?') format('☺'),
        url('fonts/SBBWeb-Ultralight.woff') format('woff'),
@@ -34,12 +34,12 @@ body {
   min-width: 1400px;
   margin-left: 20px; 
   margin-top: 50px;
-  font-family: SBBWeb Thin,Helvetica Neue,Helvetica,Arial,sans-serif;;
+  font-family: SBBWebThin,Helvetica Neue,Helvetica,Arial,sans-serif;;
 }
 
 h1 {
   font-size: 3.75em;
-  font-family: SBBWeb Ultralight
+  font-family: SBBWebUltralight
 }
 
 text.month-name,
