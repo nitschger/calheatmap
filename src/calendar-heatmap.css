@@ -1,0 +1,91 @@
+/* definition */
+@font-face {
+  font-family: SBBWeb;
+  src: url('fonts/SBBWeb-Roman.eot');
+  src: url('fonts/SBBWeb-Roman.eot?') format('☺'),
+       url('fonts/SBBWeb-Roman.woff') format('woff'),
+       url('fonts/SBBWeb-Roman.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: SBBWeb Thin;
+  src: url('fonts/SBBWeb-Thin.eot');
+  src: url('fonts/SBBWeb-Thin.eot?') format('☺'),
+       url('fonts/SBBWeb-Thin.woff') format('woff'),
+       url('fonts/SBBWeb-Thin.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: SBBWeb Ultralight;
+  src: url('fonts/SBBWeb-Ultralight.eot');
+  src: url('fonts/SBBWeb-Ultralight.eot?') format('☺'),
+       url('fonts/SBBWeb-Ultralight.woff') format('woff'),
+       url('fonts/SBBWeb-Ultralight.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  max-width: 1500px;
+  min-width: 1400px;
+  margin: auto; 
+  margin-top: 50px;
+  font-family: SBBWeb Thin,Helvetica Neue,Helvetica,Arial,sans-serif;;
+}
+
+h1 {
+  font-size: 3.75em;
+  font-family: SBBWeb Ultralight
+}
+
+text.month-name,
+text.calendar-heatmap-legend-text,
+text.day-initial {
+  font-size: 15px;
+  fill: inherit;
+  font-family: SBBWeb;
+}
+rect.day-cell:hover {
+  stroke: #555555;
+  stroke-width: 1px;
+}
+.day-cell-tooltip {
+  position: absolute;
+  z-index: 9999;
+  padding: 5px 9px;
+  color: #bbbbbb;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 3px;
+  text-align: center;
+}
+.day-cell-tooltip > span {
+  font-family: SBBWeb;
+}
+.calendar-heatmap {
+  box-sizing: initial;
+}
+
+.button {
+  background-color: rgb(235, 0, 0);
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 40px 0px 120px 20px;
+}
+
+.button:hover {
+  background-color: rgb(238, 98, 98);
+}
+
+img {
+  float: left;
+  margin: 0px 40px 0px 0px;
+}
